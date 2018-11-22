@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/vatnuoi1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.ManHinhChaoActivity"
+        <activity
+            android:name=".ui.ManHinhChaoActivity"
             android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,8 +36,10 @@
         <activity
             android:name=".ui.ThemVatNuoiActivity"
             android:parentActivityName=".ui.VatNuoiActivity" />
-        <activity android:name=".ui.KinhNghiemActivity"
-            android:parentActivityName=".ui.HomeActivity" ></activity>
+        <activity
+            android:name=".ui.KinhNghiemActivity"
+            android:parentActivityName=".ui.HomeActivity" />
+        <activity android:name=".ui.ChiPhiActivity"></activity>
     </application>
 
 </manifest>
