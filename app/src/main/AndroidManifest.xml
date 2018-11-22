@@ -39,7 +39,8 @@
         <activity
             android:name=".ui.KinhNghiemActivity"
             android:parentActivityName=".ui.HomeActivity" />
-        <activity android:name=".ui.ChiPhiActivity"></activity>
+        <activity android:name=".ui.ChiPhiActivity"
+            android:parentActivityName=".ui.HomeActivity"  ></activity>
     </application>
 
 </manifest>

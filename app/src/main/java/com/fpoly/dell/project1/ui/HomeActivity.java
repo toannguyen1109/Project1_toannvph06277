@@ -43,6 +43,13 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(b);
             }
         });
+        chiphi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent b = new Intent(HomeActivity.this, ChiPhiActivity.class);
+                startActivity(b);
+            }
+        });
     }
 
     private void initView() {
