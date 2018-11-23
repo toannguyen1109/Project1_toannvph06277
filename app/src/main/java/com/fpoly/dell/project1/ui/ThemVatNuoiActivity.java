@@ -79,7 +79,6 @@ public class ThemVatNuoiActivity extends AppCompatActivity {
         }
 
 
-
     }
 
     private void getVatNuoi() {
@@ -94,21 +93,36 @@ public class ThemVatNuoiActivity extends AppCompatActivity {
     public void add(View view) {
         vatNuoiDao = new VatNuoiDao(ThemVatNuoiActivity.this);
         VatNuoi vatNuoi = new
-                VatNuoi(edMavatnuoi.getText().toString(),maChungLoai, edSoluongvatnuoi.getText().toString(),
+                VatNuoi(edMavatnuoi.getText().toString(), maChungLoai, edSoluongvatnuoi.getText().toString(),
                 edThucan.getText().toString(), edSuckhoe.getText().toString());
         try {
-            if (vatNuoiDao.insertVatNuoi(vatNuoi) > 0) {
-                Toast.makeText(getApplicationContext(), "Thêm thành công",
-                        Toast.LENGTH_SHORT).show();
-                Intent a = new Intent(ThemVatNuoiActivity.this, VatNuoiActivity.class);
-                startActivity(a);
-            } else {
-                Toast.makeText(getApplicationContext(), "Thêm thất bại",
-                        Toast.LENGTH_SHORT).show();
+            if (validateForm() > 0) {
+                if (vatNuoiDao.insertVatNuoi(vatNuoi) > 0) {
+                    Toast.makeText(getApplicationContext(), "Thêm thành công",
+                            Toast.LENGTH_SHORT).show();
+                    Intent a = new Intent(ThemVatNuoiActivity.this, VatNuoiActivity.class);
+                    startActivity(a);
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Thêm thất bại",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         } catch (Exception ex) {
             Log.e("Error", ex.toString());
         }
+    }
+
+    private int validateForm() {
+        int check = 1;
+        if (edMavatnuoi.getText().length() == 0 || edSoluongvatnuoi.getText().length() == 0
+                || edThucan.getText().length() == 0 || edSuckhoe.getText().length() == 0) {
+            Toast.makeText(getApplicationContext(), "Bạn phải nhập đủ thông tin", Toast.LENGTH_SHORT).show();
+            check = -1;
+        }
+
+
+        return check;
     }
 
     public void Cancel(View view) {
