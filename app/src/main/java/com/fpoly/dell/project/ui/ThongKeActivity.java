@@ -35,7 +35,7 @@ public class ThongKeActivity extends AppCompatActivity {
         tvThongKeNgay.setText("Hôm nay: "+numberFormat.format(chiPhiDao.getDoanhThuTheoNgay())+" vnđ");
         tvThongKeThang.setText("Tháng Này: "+numberFormat.format(chiPhiDao.getDoanhThuTheoThang())+" vnđ");
         tvThongKeNam.setText("Năm Này: "+numberFormat.format(chiPhiDao.getDoanhThuTheoNam())+" vnđ");
-        chiPhiDao.test();
+
 
     }
 

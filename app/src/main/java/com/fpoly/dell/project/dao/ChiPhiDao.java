@@ -24,7 +24,7 @@ public class ChiPhiDao {
             "text primary key,tenthucan text, ngaynhap date, soluong text, giatien text);";
     private static final String TAG = "ChiPhiDao";
 
-    private final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public ChiPhiDao(Context context) {
         dbHelper = new DatabaseHelper(context);
@@ -37,8 +37,8 @@ public class ChiPhiDao {
         values.put("machiphi", cp.getMachiphi());
         values.put("tenthucan", cp.getTenthucan());
         values.put("ngaynhap", sdf.format(cp.getNgaynhap()));
-        values.put("soluong",cp.getSoluong());
-        values.put("giatien",cp.getGiatien());
+        values.put("soluong", cp.getSoluong());
+        values.put("giatien", cp.getGiatien());
 
 
         try {
@@ -52,7 +52,7 @@ public class ChiPhiDao {
     }
 
     //getall
-    public List<ChiPhi> getAllChiPhi()  throws ParseException {
+    public List<ChiPhi> getAllChiPhi() throws ParseException {
         List<ChiPhi> dschiphi = new ArrayList<>();
         Cursor c = db.query(TABLE_NAME, null, null, null, null, null, null);
         c.moveToFirst();
@@ -72,12 +72,12 @@ public class ChiPhiDao {
         return dschiphi;
     }
 
-//delete
-    public  int deleteChiPhi(String machiphi){
+    //delete
+    public int deleteChiPhi(String machiphi) {
         int result = db.delete(TABLE_NAME, "machiphi=?", new
                 String[]{machiphi});
-        if (result==0)
-            return  -1;
+        if (result == 0)
+            return -1;
         return 1;
     }
 
@@ -86,8 +86,8 @@ public class ChiPhiDao {
         values.put("machiphi", machiphi);
         values.put("tenthucan", tenthucan);
         values.put("ngaynhap", String.valueOf(ngaynhap));
-        values.put("soluong",soluong);
-        values.put("giatien",giatien);
+        values.put("soluong", soluong);
+        values.put("giatien", giatien);
 
         int result = db.update(TABLE_NAME, values, "machiphi=?", new
                 String[]{machiphi});
@@ -99,12 +99,11 @@ public class ChiPhiDao {
 
     public double getDoanhThuTheoNgay() {
         double doanhThu = 0;
-        String sSQL = "SELECT SUM(giatien)  as 'tongtien' FROM ChiPhi where ChiPhi.ngaynhap = strftime('%d-%m-%Y','now','localtime')";
+        String sSQL = "SELECT SUM(giatien)  as 'tongtien' FROM ChiPhi where ChiPhi.ngaynhap = strftime('%Y-%m-%d','now','localtime')";
         Cursor c = db.rawQuery(sSQL, null);
         c.moveToFirst();
         while (c.isAfterLast() == false) {
             doanhThu = c.getDouble(0);
-
             c.moveToNext();
         }
 
@@ -114,30 +113,17 @@ public class ChiPhiDao {
 
     public double getDoanhThuTheoThang() {
         double doanhThu = 0;
-        String sSQL = "SELECT SUM(giatien)  as 'tongtien' " +
-                "FROM ChiPhi  " +
-                " where strftime('%m-%Y',ChiPhi.ngaynhap,'unixepoch','localtime') =  strftime('%m-%Y','now','localtime')";
+        String sSQL = "SELECT SUM(giatien) as 'tongtien' " + "FROM ChiPhi" + " where strftime('%m-%Y',ChiPhi.ngaynhap,'localtime') =  strftime('%m-%Y','now','localtime')";
         Cursor c = db.rawQuery(sSQL, null);
         c.moveToFirst();
-        while (c.isAfterLast() == false) {
+        while (!c.isAfterLast()) {
             doanhThu = c.getDouble(0);
             c.moveToNext();
-
         }
         c.close();
         return doanhThu;
     }
-    public void test(){
-        String sSQL = "SELECT strftime('%d-%m-%Y','now','unixepoch','localtime') ";
-        Cursor c = db.rawQuery(sSQL, null);
-        c.moveToFirst();
-        while (c.isAfterLast() == false) {
 
-            Log.e("das",c.getString(0));
-            c.moveToNext();
-        }
-        c.close();
-    }
     public double getDoanhThuTheoNam() {
         double doanhThu = 0;
         String sSQL = "SELECT SUM(giatien) as 'tongtien' " +
@@ -153,4 +139,5 @@ public class ChiPhiDao {
         c.close();
         return doanhThu;
     }
+
 }
