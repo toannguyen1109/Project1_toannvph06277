@@ -1,4 +1,4 @@
-package com.fpoly.dell.project1.ui;
+package com.fpoly.dell.project.ui;
 
 import android.content.Intent;
 import android.os.CountDownTimer;

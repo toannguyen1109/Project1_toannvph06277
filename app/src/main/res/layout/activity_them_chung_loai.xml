@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
-    tools:context=".ui.ThemChungLoaiActivity">
+    tools:context="com.fpoly.dell.project.ui.ThemChungLoaiActivity">
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"

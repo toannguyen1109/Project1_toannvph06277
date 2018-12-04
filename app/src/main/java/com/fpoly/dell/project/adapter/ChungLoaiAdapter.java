@@ -1,4 +1,4 @@
-package com.fpoly.dell.project1.adapter;
+package com.fpoly.dell.project.adapter;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -14,9 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fpoly.dell.project1.R;
-import com.fpoly.dell.project1.dao.ChungLoaiDao;
-import com.fpoly.dell.project1.model.ChungLoai;
-import com.fpoly.dell.project1.model.VatNuoi;
+import com.fpoly.dell.project.dao.ChungLoaiDao;
+import com.fpoly.dell.project.model.ChungLoai;
 
 import java.util.ArrayList;
 import java.util.List;

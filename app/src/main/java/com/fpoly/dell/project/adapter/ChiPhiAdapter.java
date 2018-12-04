@@ -1,4 +1,4 @@
-package com.fpoly.dell.project1.adapter;
+package com.fpoly.dell.project.adapter;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -12,41 +12,49 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.fpoly.dell.project.dao.ChiPhiDao;
+import com.fpoly.dell.project.model.ChiPhi;
 import com.fpoly.dell.project1.R;
-import com.fpoly.dell.project1.dao.VatNuoiDao;
-import com.fpoly.dell.project1.model.ChungLoai;
-import com.fpoly.dell.project1.model.VatNuoi;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VatNuoiAdapter extends BaseAdapter implements Filterable {
-    private Filter vatnuoiFilter;
-    private List<VatNuoi> vatNuoiList;
-    private  List<VatNuoi> vatNuois;
-    private  Activity context;
-    private  LayoutInflater inflater;
-    private  VatNuoiDao vatNuoiDao;
+public class ChiPhiAdapter extends BaseAdapter implements Filterable {
+
+    private List<ChiPhi> arrChiPhi;
+    private List<ChiPhi> arrSortChiPhi;
+    private Filter chiphiFilter;
+    private Activity context;
+    private LayoutInflater inflater;
+    private ChiPhiDao chiPhiDao;
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
     private Button btnHuy;
     private Button btnXoa;
-
-    public VatNuoiAdapter(List<VatNuoi> vatNuoiList, Activity context) {
-        this.vatNuoiList = vatNuoiList;
-        this.vatNuois=vatNuoiList;
+    public ChiPhiAdapter(Activity context, List<ChiPhi> arrChiPhi) {
+        super();
         this.context = context;
-        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        vatNuoiDao = new VatNuoiDao(context);
+        this.arrChiPhi = arrChiPhi;
+        this.arrSortChiPhi=arrChiPhi;
+        this.inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        chiPhiDao = new ChiPhiDao(context);
     }
+
+
 
     @Override
     public int getCount() {
-        return vatNuoiList.size();
+        return arrChiPhi.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return vatNuoiList.get(i);
+        return arrChiPhi.get(i);
     }
 
     @Override
@@ -54,29 +62,30 @@ public class VatNuoiAdapter extends BaseAdapter implements Filterable {
         return 0;
     }
 
-
-
     static class ViewHolder {
-        ImageView img, imgDelete;
-        TextView txtTenVatNuoi, txtSoLuong, txtThucAn;
+        ImageView img;
+        TextView txttenthucan;
+        TextView txtsoluong;
+        TextView txtgiatien;
+        ImageView imgDelete;
     }
 
     @Override
-    public View getView(final int i, View convertView, ViewGroup viewGroup) {
+    public View getView(final int position, View convertView, ViewGroup viewGroup) {
         ViewHolder holder;
+        NumberFormat numberFormat = new DecimalFormat("#,###,###");
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.customvatnuoi, null);
+            convertView = inflater.inflate(R.layout.customchiphi, null);
             holder.img = convertView.findViewById(R.id.imgavatar);
-            holder.txtTenVatNuoi = convertView.findViewById(R.id.tvnamevatnuoi);
-            holder.txtSoLuong = convertView.findViewById(R.id.tvsoluong);
-            holder.txtThucAn = convertView.findViewById(R.id.tvLoaithucan);
-
-            holder.imgDelete = convertView.findViewById(R.id.imgdeletesach);
+            holder.txttenthucan = convertView.findViewById(R.id.tvtenthucan);
+            holder.txtsoluong = convertView.findViewById(R.id.tvSoluong);
+            holder.txtgiatien = convertView.findViewById(R.id.tvgiatien);
+            holder.imgDelete = convertView.findViewById(R.id.imgdelete);
             holder.imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                  final Dialog  dialog = new Dialog(context);
+                    final Dialog dialog = new Dialog(context);
                     dialog.setContentView(R.layout.dialog_delete);
                     dialog.setTitle("Bạn có muốn xóa không ?");
                     btnXoa = dialog.findViewById(R.id.btnXoa);
@@ -86,8 +95,8 @@ public class VatNuoiAdapter extends BaseAdapter implements Filterable {
                     btnXoa.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            vatNuoiDao.deleteVatNuoi(vatNuoiList.get(i).getMavatnuoi());
-                            vatNuoiList.remove(i);
+                            chiPhiDao.deleteChiPhi(arrChiPhi.get(position).getMachiphi());
+                            arrChiPhi.remove(position);
                             notifyDataSetChanged();
                             dialog.dismiss();
                         }
@@ -98,51 +107,46 @@ public class VatNuoiAdapter extends BaseAdapter implements Filterable {
                             dialog.dismiss();
                         }
                     });
-
                 }
             });
             convertView.setTag(holder);
 
-        } else
-            holder = (ViewHolder) convertView.getTag();
-        VatNuoi entry = vatNuoiList.get(i);
-        holder.img.setImageResource(R.drawable.vatnuoi1);
-        holder.txtTenVatNuoi.setText("Tên: " + entry.getMachungloai());
-        holder.txtSoLuong.setText("Số Lượng: " + entry.getSoluong());
-        holder.txtThucAn.setText("Thức Ăn: " + entry.getLoaithucan());
+        }
+        else
 
-
-
-
-
+            holder=(ViewHolder)convertView.getTag();
+        ChiPhi _entry = arrChiPhi.get(position);
+        holder.img.setImageResource(R.drawable.chiphi);
+        holder.txttenthucan.setText("Tên: "+_entry.getTenthucan());
+        holder.txtsoluong.setText("Số Lượng: "+_entry.getSoluong());
+        holder.txtgiatien.setText("Giá Tiền: "+numberFormat.format(Long.valueOf(_entry.getGiatien()))+" vnđ");
         return convertView;
     }
     @Override
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
     }
-
     public void resetData() {
-        vatNuoiList = vatNuois;
+        arrChiPhi = arrSortChiPhi;
     }
     public Filter getFilter() {
-        if (vatnuoiFilter == null)
-            vatnuoiFilter = new CustomFilter();
-        return vatnuoiFilter;
+        if (chiphiFilter == null)
+            chiphiFilter = new CustomFilter();
+        return chiphiFilter;
     }
     private class CustomFilter extends Filter {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
             if (constraint == null || constraint.length() == 0) {
-                results.values = vatNuois;
-                results.count = vatNuois.size();
+                results.values = arrSortChiPhi;
+                results.count = arrSortChiPhi.size();
             }
             else {
-                List<VatNuoi> lsHoaDon = new ArrayList<>();
-                for (VatNuoi p : vatNuoiList) {
+                List<ChiPhi> lsHoaDon = new ArrayList<>();
+                for (ChiPhi p : arrChiPhi) {
                     if
-                            (p.getMachungloai().toUpperCase().startsWith(constraint.toString().toUpperCase()))
+                            (p.getTenthucan().toUpperCase().startsWith(constraint.toString().toUpperCase()))
                         lsHoaDon.add(p);
                 }
                 results.values = lsHoaDon;
@@ -157,10 +161,9 @@ public class VatNuoiAdapter extends BaseAdapter implements Filterable {
             if (results.count == 0)
                 notifyDataSetInvalidated();
             else {
-                vatNuoiList = (List<VatNuoi>) results.values;
+                arrChiPhi = (List<ChiPhi>) results.values;
                 notifyDataSetChanged();
             }
         }
     }
-
 }

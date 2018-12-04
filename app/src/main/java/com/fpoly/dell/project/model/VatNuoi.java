@@ -1,4 +1,4 @@
-package com.fpoly.dell.project1.model;
+package com.fpoly.dell.project.model;
 
 public class VatNuoi {
     private String mavatnuoi;

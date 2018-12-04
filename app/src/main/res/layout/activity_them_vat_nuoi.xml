@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
-    tools:context=".ui.ThemVatNuoiActivity">
+    tools:context="com.fpoly.dell.project.ui.ThemVatNuoiActivity">
 
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"
@@ -64,14 +64,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:counterEnabled="true"
-                app:counterMaxLength="50">
+                app:counterMaxLength="5">
 
                 <EditText
                     android:id="@+id/ed_soluongvatnuoi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/soluong"
-                    android:maxLength="50" />
+                    android:inputType="number"
+                    android:maxLength="5" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout

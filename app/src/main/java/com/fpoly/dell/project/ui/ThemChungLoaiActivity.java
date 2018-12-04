@@ -1,4 +1,4 @@
-package com.fpoly.dell.project1.ui;
+package com.fpoly.dell.project.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fpoly.dell.project.dao.ChungLoaiDao;
+import com.fpoly.dell.project.model.ChungLoai;
 import com.fpoly.dell.project1.R;
-import com.fpoly.dell.project1.dao.ChungLoaiDao;
-import com.fpoly.dell.project1.model.ChungLoai;
 
 public class ThemChungLoaiActivity extends AppCompatActivity {
 

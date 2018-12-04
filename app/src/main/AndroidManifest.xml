@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.ManHinhChaoActivity"
+            android:name="com.fpoly.dell.project.ui.ManHinhChaoActivity"
             android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,27 +20,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.HomeActivity" />
+        <activity android:name="com.fpoly.dell.project.ui.HomeActivity" />
         <activity
-            android:name=".ui.ChungLoaiActivity"
-            android:parentActivityName=".ui.HomeActivity" />
+            android:name="com.fpoly.dell.project.ui.ChungLoaiActivity"
+            android:parentActivityName="com.fpoly.dell.project.ui.HomeActivity" />
         <activity
-            android:name=".ui.VatNuoiActivity"
-            android:parentActivityName=".ui.HomeActivity" />
+            android:name="com.fpoly.dell.project.ui.VatNuoiActivity"
+            android:parentActivityName="com.fpoly.dell.project.ui.HomeActivity" />
         <activity
-            android:name=".ui.ChiTietChungLoaiActivity"
-            android:parentActivityName=".ui.ChungLoaiActivity" />
+            android:name="com.fpoly.dell.project.ui.ChiTietChungLoaiActivity"
+            android:parentActivityName="com.fpoly.dell.project.ui.ChungLoaiActivity" />
         <activity
-            android:name=".ui.ThemChungLoaiActivity"
-            android:parentActivityName=".ui.ChungLoaiActivity" />
+            android:name="com.fpoly.dell.project.ui.ThemChungLoaiActivity"
+            android:parentActivityName="com.fpoly.dell.project.ui.ChungLoaiActivity" />
         <activity
-            android:name=".ui.ThemVatNuoiActivity"
-            android:parentActivityName=".ui.VatNuoiActivity" />
+            android:name="com.fpoly.dell.project.ui.ThemVatNuoiActivity"
+            android:parentActivityName="com.fpoly.dell.project.ui.VatNuoiActivity" />
         <activity
-            android:name=".ui.KinhNghiemActivity"
-            android:parentActivityName=".ui.HomeActivity" />
-        <activity android:name=".ui.ChiPhiActivity"
-            android:parentActivityName=".ui.HomeActivity"  ></activity>
+            android:name="com.fpoly.dell.project.ui.KinhNghiemActivity"
+            android:parentActivityName="com.fpoly.dell.project.ui.HomeActivity" />
+        <activity
+            android:name="com.fpoly.dell.project.ui.ChiPhiActivity"
+            android:parentActivityName="com.fpoly.dell.project.ui.HomeActivity" />
+        <activity
+            android:name="com.fpoly.dell.project.ui.ThemChiPhiActivity"
+            android:parentActivityName="com.fpoly.dell.project.ui.ChiPhiActivity" />
+        <activity
+            android:name="com.fpoly.dell.project.ui.ChiTietChiPhiActivity"
+            android:parentActivityName="com.fpoly.dell.project.ui.ChiPhiActivity" />
+        <activity android:name="com.fpoly.dell.project.ui.ThongKeActivity"
+            android:parentActivityName="com.fpoly.dell.project.ui.HomeActivity"></activity>
     </application>
 
 </manifest>

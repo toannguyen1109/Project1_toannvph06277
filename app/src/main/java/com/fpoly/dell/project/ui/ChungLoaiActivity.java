@@ -1,10 +1,10 @@
-package com.fpoly.dell.project1.ui;
+package com.fpoly.dell.project.ui;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -12,58 +12,60 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.fpoly.dell.project.adapter.ChungLoaiAdapter;
+import com.fpoly.dell.project.dao.ChungLoaiDao;
+import com.fpoly.dell.project.model.ChungLoai;
 import com.fpoly.dell.project1.R;
-import com.fpoly.dell.project1.adapter.VatNuoiAdapter;
-import com.fpoly.dell.project1.dao.VatNuoiDao;
-import com.fpoly.dell.project1.model.VatNuoi;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class VatNuoiActivity extends AppCompatActivity {
-    private static List<VatNuoi> dsvatnuoi = new ArrayList<>();
-    private ListView lvvatnuoi;
-    private VatNuoiAdapter adapter = null;
-    private VatNuoiDao vatNuoiDao;
-    private FloatingActionButton fabAdd;
+public class ChungLoaiActivity extends AppCompatActivity {
+    private static List<ChungLoai> dsChungLoai = new ArrayList<>();
+    private ListView lvChungLoai;
+    private ChungLoaiAdapter adapter = null;
+    private ChungLoaiDao chungLoaiDao;
+    private FloatingActionButton fab;
 
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        dsChungLoai.clear();
+//        dsChungLoai = chungLoaiDao.getAllChungLoai();
+//        adapter.changeDataset(chungLoaiDao.getAllChungLoai());
+//    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vat_nuoi);
-        setTitle("Quản Lý Vật Nuôi");
-
+        setContentView(R.layout.activity_chung_loai);
+        setTitle("Quản lý chủng loại");
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        lvvatnuoi = findViewById(R.id.lv_vatnuoi);
-        vatNuoiDao = new VatNuoiDao(VatNuoiActivity.this);
+        lvChungLoai = findViewById(R.id.lv_chungloai);
+        fab=findViewById(R.id.fabAdd);
+        chungLoaiDao = new ChungLoaiDao(ChungLoaiActivity.this);
+        dsChungLoai = chungLoaiDao.getAllChungLoai();
 
+        adapter = new ChungLoaiAdapter(dsChungLoai, this);
 
-        dsvatnuoi = vatNuoiDao.getAllVatNuoi();
-
-        adapter = new VatNuoiAdapter(dsvatnuoi, this);
-        lvvatnuoi.setAdapter(adapter);
-
-        lvvatnuoi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvChungLoai.setAdapter(adapter);
+        lvChungLoai.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(VatNuoiActivity.this, ThemVatNuoiActivity.class);
+                Intent intent = new Intent(ChungLoaiActivity.this, ChiTietChungLoaiActivity.class);
                 Bundle b = new Bundle();
 
-                b.putString("MAVATNUOI", dsvatnuoi.get(position).getMavatnuoi());
-                b.putString("MACHUNGLOAI", dsvatnuoi.get(position).getMachungloai());
-                b.putString("SOLUONG", dsvatnuoi.get(position).getSoluong());
-                b.putString("THUCAN", dsvatnuoi.get(position).getLoaithucan());
-                b.putString("SUCKHOE", dsvatnuoi.get(position).getSuckhoe());
+                b.putString("MACHUNGLOAI", dsChungLoai.get(position).getMachungloai());
+                b.putString("TENCHUNGLOAI", dsChungLoai.get(position).getTenvatnuoi());
+                b.putString("VITRICHUONG", dsChungLoai.get(position).getVitrichuong());
 
                 intent.putExtras(b);
                 startActivity(intent);
             }
         });
-        initView();
 
-        lvvatnuoi.setTextFilterEnabled(true);
+        lvChungLoai.setTextFilterEnabled(true);
         EditText edSeach = findViewById(R.id.edSearch);
         edSeach.addTextChangedListener(new TextWatcher() {
             @Override
@@ -84,16 +86,15 @@ public class VatNuoiActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
-        fabAdd.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent a = new Intent(VatNuoiActivity.this, ThemVatNuoiActivity.class);
+                Intent a = new Intent(ChungLoaiActivity.this, ThemChungLoaiActivity.class);
                 startActivity(a);
             }
         });
-    }
 
-    private void initView() {
-        fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
+
+
     }
 }

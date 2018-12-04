@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ChiTietChungLoaiActivity">
+    tools:context="com.fpoly.dell.project.ui.ChiTietChungLoaiActivity">
 
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"
@@ -95,6 +95,7 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:background="@drawable/button"
                     android:id="@+id/btnHuy"
                     style="?android:textAppearanceSmall"
                     android:layout_width="0dp"
@@ -105,6 +106,7 @@
                     android:textStyle="bold" />
 
                 <Button
+                    android:background="@drawable/button"
                     android:onClick="UpdateChungLoai"
                     style="?android:textAppearanceSmall"
                     android:layout_width="0dp"

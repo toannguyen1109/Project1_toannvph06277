@@ -1,4 +1,4 @@
-package com.fpoly.dell.project1.ui;
+package com.fpoly.dell.project.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,6 +47,13 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent b = new Intent(HomeActivity.this, ChiPhiActivity.class);
+                startActivity(b);
+            }
+        });
+        thongke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent b = new Intent(HomeActivity.this, ThongKeActivity.class);
                 startActivity(b);
             }
         });

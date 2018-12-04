@@ -1,4 +1,4 @@
-package com.fpoly.dell.project1.ui;
+package com.fpoly.dell.project.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +12,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.fpoly.dell.project.dao.ChungLoaiDao;
+import com.fpoly.dell.project.dao.VatNuoiDao;
+import com.fpoly.dell.project.model.ChungLoai;
+import com.fpoly.dell.project.model.VatNuoi;
 import com.fpoly.dell.project1.R;
-import com.fpoly.dell.project1.dao.ChungLoaiDao;
-import com.fpoly.dell.project1.dao.VatNuoiDao;
-import com.fpoly.dell.project1.model.ChungLoai;
-import com.fpoly.dell.project1.model.VatNuoi;
 
 import java.util.ArrayList;
 import java.util.List;

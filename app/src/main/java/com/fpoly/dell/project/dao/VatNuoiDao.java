@@ -1,4 +1,4 @@
-package com.fpoly.dell.project1.dao;
+package com.fpoly.dell.project.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.fpoly.dell.project1.database.DatabaseHelper;
-import com.fpoly.dell.project1.model.VatNuoi;
+import com.fpoly.dell.project.database.DatabaseHelper;
+import com.fpoly.dell.project.model.VatNuoi;
 
 import java.util.ArrayList;
 import java.util.List;

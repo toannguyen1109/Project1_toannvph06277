@@ -1,4 +1,4 @@
-package com.fpoly.dell.project1.ui;
+package com.fpoly.dell.project.ui;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;

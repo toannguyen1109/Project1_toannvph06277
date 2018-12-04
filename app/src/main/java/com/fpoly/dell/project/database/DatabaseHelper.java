@@ -1,11 +1,12 @@
-package com.fpoly.dell.project1.database;
+package com.fpoly.dell.project.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.fpoly.dell.project1.dao.ChungLoaiDao;
-import com.fpoly.dell.project1.dao.VatNuoiDao;
+import com.fpoly.dell.project.dao.ChiPhiDao;
+import com.fpoly.dell.project.dao.ChungLoaiDao;
+import com.fpoly.dell.project.dao.VatNuoiDao;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "dbBookManager";
@@ -19,12 +20,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(ChungLoaiDao.SQL_CHUNGLOAI);
         db.execSQL(VatNuoiDao.SQL_VATNUOI);
+        db.execSQL(ChiPhiDao.SQL_CHIPHI);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("Drop table if exists "+ChungLoaiDao.TABLE_NAME);
         db.execSQL("Drop table if exists "+VatNuoiDao.TABLE_NAME);
+        db.execSQL("Drop table if exists "+ChiPhiDao.TABLE_NAME);
 
     }
 }

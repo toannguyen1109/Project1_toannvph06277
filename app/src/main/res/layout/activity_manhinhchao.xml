@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".ui.ManHinhChaoActivity">
+    tools:context="com.fpoly.dell.project.ui.ManHinhChaoActivity">
 
     <ImageView
+        android:background="#fff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/logo"

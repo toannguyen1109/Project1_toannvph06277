@@ -1,4 +1,4 @@
-package com.fpoly.dell.project1.ui;
+package com.fpoly.dell.project.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.fpoly.dell.project.dao.ChungLoaiDao;
 import com.fpoly.dell.project1.R;
-import com.fpoly.dell.project1.dao.ChungLoaiDao;
 
 public class ChiTietChungLoaiActivity extends AppCompatActivity {
 
@@ -64,12 +64,28 @@ public class ChiTietChungLoaiActivity extends AppCompatActivity {
     }
 
     public void UpdateChungLoai(View view) {
-        if (chungLoaiDao.updateChungLoai(edtMaChungLoai.getText().toString(),
-                edtTenChungLoai.getText().toString(), edtViTriChuong.getText().toString()) > 0) {
-            Toast.makeText(getApplicationContext(), "Lưu Thành Công", Toast.LENGTH_SHORT).show();
 
-            Intent a = new Intent(ChiTietChungLoaiActivity.this, ChungLoaiActivity.class);
-            startActivity(a);
+        if (validateForm()>0) {
+            if (chungLoaiDao.updateChungLoai(edtMaChungLoai.getText().toString(),
+                    edtTenChungLoai.getText().toString(), edtViTriChuong.getText().toString()) > 0) {
+                Toast.makeText(getApplicationContext(), "Lưu Thành Công", Toast.LENGTH_SHORT).show();
+
+                Intent a = new Intent(ChiTietChungLoaiActivity.this, ChungLoaiActivity.class);
+                startActivity(a);
+            }
         }
+    }
+
+    private int validateForm() {
+        int check = 1;
+        if (edtMaChungLoai.getText().length() == 0 || edtTenChungLoai.getText().length() == 0
+                || edtViTriChuong.getText().length() == 0) {
+            Toast.makeText(getApplicationContext(), "Bạn phải nhập đủ thông tin", Toast.LENGTH_SHORT).show();
+            check = -1;
+        }
+
+
+
+        return check;
     }
 }
