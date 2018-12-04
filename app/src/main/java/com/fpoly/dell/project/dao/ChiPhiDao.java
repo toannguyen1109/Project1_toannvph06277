@@ -116,7 +116,7 @@ public class ChiPhiDao {
         double doanhThu = 0;
         String sSQL = "SELECT SUM(giatien)  as 'tongtien' " +
                 "FROM ChiPhi  " +
-                " where ChiPhi.ngaynhap like '%'+ strftime('%m-%Y','now') +'%'";
+                " where strftime('%m-%Y',ChiPhi.ngaynhap,'unixepoch','localtime') =  strftime('%m-%Y','now','localtime')";
         Cursor c = db.rawQuery(sSQL, null);
         c.moveToFirst();
         while (c.isAfterLast() == false) {
@@ -127,7 +127,17 @@ public class ChiPhiDao {
         c.close();
         return doanhThu;
     }
+    public void test(){
+        String sSQL = "SELECT strftime('%d-%m-%Y','now','unixepoch','localtime') ";
+        Cursor c = db.rawQuery(sSQL, null);
+        c.moveToFirst();
+        while (c.isAfterLast() == false) {
 
+            Log.e("das",c.getString(0));
+            c.moveToNext();
+        }
+        c.close();
+    }
     public double getDoanhThuTheoNam() {
         double doanhThu = 0;
         String sSQL = "SELECT SUM(giatien) as 'tongtien' " +
