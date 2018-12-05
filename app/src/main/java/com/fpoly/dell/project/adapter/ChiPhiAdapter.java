@@ -3,6 +3,8 @@ package com.fpoly.dell.project.adapter;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,6 +109,19 @@ public class ChiPhiAdapter extends BaseAdapter implements Filterable {
                             dialog.dismiss();
                         }
                     });
+//                    final AlertDialog.Builder alert = new AlertDialog.Builder((Activity)v.getContext());
+//                    alert.setTitle("Delete");
+//                    alert.setMessage("Bạn có muốn xóa không ?");
+//                    alert.setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            chiPhiDao.deleteChiPhi(arrChiPhi.get(position).getMachiphi());
+//                            arrChiPhi.remove(position);
+//                            notifyDataSetChanged();
+//
+//
+//                        }
+//                    });
                 }
             });
             convertView.setTag(holder);
