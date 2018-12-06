@@ -35,7 +35,7 @@ public class ThemChiPhiActivity extends AppCompatActivity implements
     private Button btnAdd;
     private ChiPhiDao chiPhiDao;
 
-    private final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

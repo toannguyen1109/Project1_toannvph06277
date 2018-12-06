@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fpoly.dell.project.dao.ChiPhiDao;
+import com.fpoly.dell.project.database.DatabaseHelper;
 import com.fpoly.dell.project.model.ChiPhi;
 import com.fpoly.dell.project1.R;
 
@@ -34,6 +35,7 @@ public class ChiPhiAdapter extends BaseAdapter implements Filterable {
     private Activity context;
     private LayoutInflater inflater;
     private ChiPhiDao chiPhiDao;
+    private DatabaseHelper databaseHelper;
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
     private Button btnHuy;
@@ -87,42 +89,54 @@ public class ChiPhiAdapter extends BaseAdapter implements Filterable {
             holder.imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    final Dialog dialog = new Dialog(context);
-                    dialog.setContentView(R.layout.dialog_delete);
-                    dialog.setTitle("Bạn có muốn xóa không ?");
-                    btnXoa = dialog.findViewById(R.id.btnXoa);
-                    btnHuy = dialog.findViewById(R.id.btnHuy);
-                    dialog.show();
-
-                    btnXoa.setOnClickListener(new View.OnClickListener() {
+//                    final Dialog dialog = new Dialog(context);
+//                    dialog.setContentView(R.layout.dialog_delete);
+//                    dialog.setTitle("Bạn có muốn xóa không ?");
+//                    btnXoa = dialog.findViewById(R.id.btnXoa);
+//                    btnHuy = dialog.findViewById(R.id.btnHuy);
+//                    dialog.show();
+//
+//                    btnXoa.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            chiPhiDao.deleteChiPhi(arrChiPhi.get(position).getMachiphi());
+//                            arrChiPhi.remove(position);
+//                            notifyDataSetChanged();
+//                            dialog.dismiss();
+//                        }
+//                    });
+//                    btnHuy.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            dialog.dismiss();
+//                        }
+//                    });
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Xóa");
+                    builder.setMessage("Bạn có muốn xóa không?");
+                    builder.setCancelable(true);
+                    builder.setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(View v) {
+                        public void onClick(DialogInterface dialog, int which) {
+                            databaseHelper = new DatabaseHelper(context);
+                            chiPhiDao = new ChiPhiDao(context);
                             chiPhiDao.deleteChiPhi(arrChiPhi.get(position).getMachiphi());
                             arrChiPhi.remove(position);
                             notifyDataSetChanged();
                             dialog.dismiss();
                         }
                     });
-                    btnHuy.setOnClickListener(new View.OnClickListener() {
+                    builder.setPositiveButton("Không", new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(View v) {
+                        public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
                     });
-//                    final AlertDialog.Builder alert = new AlertDialog.Builder((Activity)v.getContext());
-//                    alert.setTitle("Delete");
-//                    alert.setMessage("Bạn có muốn xóa không ?");
-//                    alert.setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//                            chiPhiDao.deleteChiPhi(arrChiPhi.get(position).getMachiphi());
-//                            arrChiPhi.remove(position);
-//                            notifyDataSetChanged();
-//
-//
-//                        }
-//                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
+
+
             });
             convertView.setTag(holder);
 

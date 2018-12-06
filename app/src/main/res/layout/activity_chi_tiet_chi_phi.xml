@@ -25,147 +25,42 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="40dp"
+            android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout
+            <TextView
+                android:textSize="18sp"
+                android:id="@+id/tv_machiphi"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:counterEnabled="true"
-                app:counterMaxLength="5"
-                android:layout_marginTop="16dp">
+                android:layout_height="30dp" />
 
-                <EditText
-                    android:maxLength="5"
-                    android:id="@+id/edtMachiphi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/maChiphi"
-                    android:imeActionId="6"
-                    android:imeOptions="actionDone"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+            <TextView
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_tenthucan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:counterEnabled="true"
-                app:counterMaxLength="50"
-                android:layout_marginTop="16dp">
+                android:layout_height="30dp" />
 
-                <EditText
-                    android:maxLength="50"
-                    android:id="@+id/edtTenthucan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/tenThucan"
-                    android:imeActionId="6"
-                    android:imeOptions="actionDone"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <LinearLayout
+            <TextView
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_ngaymua"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="horizontal">
+                android:layout_height="30dp" />
 
-                <EditText
-                    android:id="@+id/edNgayMua"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:hint="@string/ngaymua_chiphi"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="datePicker"
-                    android:text="@string/btn_chon" />
-            </LinearLayout>
-            <android.support.design.widget.TextInputLayout
+            <TextView
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_Soluong"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:counterEnabled="true"
-                app:counterMaxLength="50"
-                android:layout_marginTop="16dp">
+                android:layout_height="30dp" />
 
-                <EditText
-                    android:maxLength="50"
-                    android:id="@+id/edtSoLuong_ChiPhi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/soluong"
-                    android:imeActionId="6"
-                    android:imeOptions="actionDone"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
+            <TextView
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_giatien"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:counterEnabled="true"
-                app:counterMaxLength="50"
-                android:layout_marginTop="16dp">
-
-                <EditText
-                    android:maxLength="50"
-                    android:id="@+id/edtGiatien"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/GiaTien"
-                    android:imeActionId="6"
-                    android:imeOptions="actionDone"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:background="@drawable/button"
-                    android:id="@+id/btnHuy"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="1"
-                    android:text="@string/Cancel"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:background="@drawable/button"
-                    android:id="@+id/btnAdd"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="1"
-                    android:text="@string/update"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-
+                android:layout_height="30dp" />
 
 
         </LinearLayout>

@@ -3,6 +3,8 @@ package com.fpoly.dell.project.adapter;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fpoly.dell.project.dao.ChiPhiDao;
+import com.fpoly.dell.project.database.DatabaseHelper;
 import com.fpoly.dell.project1.R;
 import com.fpoly.dell.project.dao.ChungLoaiDao;
 import com.fpoly.dell.project.model.ChungLoai;
@@ -26,7 +30,8 @@ public class ChungLoaiAdapter extends BaseAdapter implements Filterable {
     private List<ChungLoai> chungLoais;
     private final Activity context;
     private final LayoutInflater inflater;
-    private final ChungLoaiDao chungLoaiDao;
+    private  ChungLoaiDao chungLoaiDao;
+    private DatabaseHelper databaseHelper;
 
     private Button btnHuy;
     private Button btnXoa;
@@ -71,29 +76,52 @@ static  class ViewHolder{
                 @Override
                 public void onClick(View v) {
 
-                    final Dialog dialog = new Dialog(context);
-                    dialog.setContentView(R.layout.dialog_delete);
-                    dialog.setTitle("Bạn có muốn xóa không ?");
-                    btnXoa = dialog.findViewById(R.id.btnXoa);
-                    btnHuy = dialog.findViewById(R.id.btnHuy);
-                    dialog.show();
+//                    final Dialog dialog = new Dialog(context);
+//                    dialog.setContentView(R.layout.dialog_delete);
+//                    dialog.setTitle("Bạn có muốn xóa không ?");
+//                    btnXoa = dialog.findViewById(R.id.btnXoa);
+//                    btnHuy = dialog.findViewById(R.id.btnHuy);
+//                    dialog.show();
+//
+//                    btnXoa.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            chungLoaiDao.deleteChungloaiByID(chungloailist.get(i).getMachungloai());
+//                            chungloailist.remove(i);
+//                            notifyDataSetChanged();
+//                            dialog.dismiss();
+//                        }
+//                    });
+//                    btnHuy.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            dialog.dismiss();
+//                        }
+//                    });
 
-                    btnXoa.setOnClickListener(new View.OnClickListener() {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Xóa");
+                    builder.setMessage("Bạn có muốn xóa không?");
+                    builder.setCancelable(true);
+                    builder.setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(View v) {
+                        public void onClick(DialogInterface dialog, int which) {
+                            databaseHelper = new DatabaseHelper(context);
+                            chungLoaiDao = new ChungLoaiDao(context);
                             chungLoaiDao.deleteChungloaiByID(chungloailist.get(i).getMachungloai());
                             chungloailist.remove(i);
                             notifyDataSetChanged();
                             dialog.dismiss();
                         }
                     });
-                    btnHuy.setOnClickListener(new View.OnClickListener() {
+                    builder.setPositiveButton("Không", new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(View v) {
+                        public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
                     });
-
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
 
 
                 }

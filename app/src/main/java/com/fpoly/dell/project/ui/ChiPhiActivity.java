@@ -29,7 +29,7 @@ public class ChiPhiActivity extends AppCompatActivity {
     private ChiPhiAdapter adapter = null;
     private ChiPhiDao chiPhiDao;
     private FloatingActionButton fab;
-    private final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

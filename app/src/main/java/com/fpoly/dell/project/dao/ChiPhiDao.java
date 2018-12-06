@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.fpoly.dell.project.database.Contacts;
 import com.fpoly.dell.project.database.DatabaseHelper;
 import com.fpoly.dell.project.model.ChiPhi;
 
@@ -60,7 +61,7 @@ public class ChiPhiDao {
             ChiPhi ee = new ChiPhi();
             ee.setMachiphi(c.getString(0));
             ee.setTenthucan(c.getString(1));
-            ee.setNgaynhap(sdf.parse(c.getString(2)));
+            ee.setNgaynhap(sdf.parse((c.getString(2))));
             ee.setSoluong(c.getString(3));
             ee.setGiatien(c.getString(4));
 
