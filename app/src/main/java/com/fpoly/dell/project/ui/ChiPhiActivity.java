@@ -25,11 +25,8 @@ import java.util.List;
 
 public class ChiPhiActivity extends AppCompatActivity {
     private List<ChiPhi> dsChiPhi = new ArrayList<>();
-    private ListView lvChiPhi;
     private ChiPhiAdapter adapter = null;
-    private ChiPhiDao chiPhiDao;
-    private FloatingActionButton fab;
-    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +35,12 @@ public class ChiPhiActivity extends AppCompatActivity {
         setTitle("Chi phí");
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        lvChiPhi = findViewById(R.id.lv_chiphi);
+        ListView lvChiPhi = findViewById(R.id.lv_chiphi);
 
-        fab = findViewById(R.id.fabAdd);
+        FloatingActionButton fab = findViewById(R.id.fabAdd);
 
 
-        chiPhiDao = new ChiPhiDao(ChiPhiActivity.this);
+        ChiPhiDao chiPhiDao = new ChiPhiDao(ChiPhiActivity.this);
         try {
             dsChiPhi = chiPhiDao.getAllChiPhi();
         } catch (Exception e) {

@@ -18,7 +18,6 @@ import java.util.List;
 
 public class ChiPhiDao {
     private final SQLiteDatabase db;
-    private final DatabaseHelper dbHelper;
 
     public static final String TABLE_NAME = "ChiPhi";
     public static final String SQL_CHIPHI = "CREATE TABLE ChiPhi(machiphi " +
@@ -28,7 +27,7 @@ public class ChiPhiDao {
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public ChiPhiDao(Context context) {
-        dbHelper = new DatabaseHelper(context);
+        DatabaseHelper dbHelper = new DatabaseHelper(context);
         db = dbHelper.getWritableDatabase();
 
     }

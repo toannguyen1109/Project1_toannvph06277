@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.fpoly.dell.project.dao.ChiPhiDao;
 import com.fpoly.dell.project1.R;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -28,7 +30,7 @@ public class ChiTietChiPhiActivity extends AppCompatActivity implements DatePick
     private String giatien;
     private ChiPhiDao chiPhiDao;
 
-    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private final SimpleDateFormat sdf = new SimpleDateFormat("dđ-MM-yyyy");
     private TextView tvMachiphi;
     private TextView tvTenthucan;
     private TextView tvNgaymua;
@@ -36,6 +38,7 @@ public class ChiTietChiPhiActivity extends AppCompatActivity implements DatePick
     private TextView tvGiatien;
     private TextView tvSoluong;
 
+    NumberFormat numberFormat = new DecimalFormat("#,###,###");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +65,7 @@ public class ChiTietChiPhiActivity extends AppCompatActivity implements DatePick
         tvTenthucan.setText("Tên thức ăn: "+tenthucan);
         tvNgaymua.setText("Ngày mua: "+ngaynhap);
         tvSoluong.setText("Số lượng: "+soluong);
-        tvGiatien.setText("Giá Tiền: "+giatien);
+        tvGiatien.setText("Giá Tiền: "+numberFormat.format(Long.parseLong(giatien))+" vnđ");
 //        btnHuy.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
